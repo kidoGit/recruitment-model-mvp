@@ -1,0 +1,70 @@
+{
+  "categories": [
+    {
+      "id": "MDjTNqe",
+      "name": "Engineering",
+      "jobs": [
+        {
+          "jobTitle": "Data Analyst",
+          "qualification": "BE/ME",
+          "skills": "Java,Angular,Spring,MongoDB",
+          "experience": "Not Required"
+        },
+        {
+          "jobTitle": "Dev Ops Engineerrrrr",
+          "qualification": "BE/ME",
+          "skills": "Java,Angular,Spring,MongoDB",
+          "experience": "2+"
+        },
+        {
+          "jobTitle": "Data Analystttttt",
+          "qualification": "BE/MEeee",
+          "skills": "Java,Angular,Spring,MongoDBbbb",
+          "experience": "Not Requiredddd"
+        }
+      ]
+    },
+    {
+      "id": "MDaTNye",
+      "name": "Design",
+      "jobs": [
+        {
+          "jobTitle": "Data Analyst",
+          "qualification": "BE/ME",
+          "skills": "Java,Angular,Spring,MongoDB",
+          "experience": "Not Required"
+        },
+        {
+          "jobTitle": "Dev Ops Engineerrr",
+          "qualification": "BE/MEee",
+          "skills": "Java,Angular,Spring,MongoDBbb",
+          "experience": "2+++"
+        },
+        {
+          "jobTitle": "Data Analyst",
+          "qualification": "BE/ME",
+          "skills": "Java,Angular,Spring,MongoDB",
+          "experience": "Not Required"
+        }
+      ]
+    },
+    {
+      "id": "MDaTaye",
+      "name": "BA",
+      "jobs": [
+        {
+          "jobTitle": "Data Analyst",
+          "qualification": "BE/ME",
+          "skills": "Java,Angular,Spring,MongoDB",
+          "experience": "Not Required"
+        },
+        {
+          "jobTitle": "Dev Ops Engineer",
+          "qualification": "BE/ME",
+          "skills": "Java,Angular,Spring,MongoDB",
+          "experience": "2+"
+        }
+      ]
+    }
+  ]
+}
