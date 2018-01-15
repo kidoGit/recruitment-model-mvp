@@ -8,11 +8,31 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FormComponent implements OnInit {
 
-  position=this.route.snapshot.paramMap.get('position')
+  position=this.route.snapshot.paramMap.get('position');
+  isFresher = false;
+  selectedStatus='Fresher';
+
+  status:string[]=[
+    'Fresher',
+    'Freelancer',
+    'Working'
+  ];
 
   constructor(private route:ActivatedRoute) { }
 
   ngOnInit() {
+    this.changeStatus();
   }
 
+  changeStatus(){
+    if(this.selectedStatus=='Fresher'){
+      this.isFresher=true;
+    }else{
+      this.isFresher=false;
+    }
+  }
+
+  onSubmit = function(value){
+    alert("Submit Successful");
+  }
 }

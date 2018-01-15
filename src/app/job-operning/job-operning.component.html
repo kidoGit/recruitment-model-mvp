@@ -1,162 +1,52 @@
 <div class="container">
-  <h2 class="text-center">Job Openings</h2><hr>
-<div class="panel-group" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-        <h4>Engineering &nbsp;<span class="fa fa-caret-down"></span></h4></a>
-      </h4>
-    </div>
-    <div id="collapse1" class="panel-collapse collapse in">
-      <div class="panel-body">
-        <div class="table-responsive">          
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Sr No.</th>
-                <th>Job Title</th>
-                <th>Qualification Required</th>
-                <th>Required Experience</th>
-               
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Data Analyst</td>
-                <td>BE/ME</td>
-                <td>Not Required</td>
-                <td><button type="button" class="btn btn-primary">Apply</button></td>
-              </tr>
+  <div class="col-lg-1">
 
-              <tr>
-                <td>2</td>
-                <td>Dev Ops Engineer</td>
-                <td>BE/ME</td>
-                <td>2+</td>
-                <td><button type="button" class="btn btn-primary">Apply</button></td>
-              </tr>
+  </div>
+  <div class="col-lg-10">
+    <h2 class="text-center" style="color: #903564">Job Openings</h2>
+    <hr>
+    <div class="panel-group" id="accordion" *ngFor="let job of jobList;let i=index">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#cl{{i}}">
+              <h4> {{job.name}}&nbsp;
+                <span class="fa fa-caret-down"></span>
+              </h4>
+            </a>
+          </h4>
+        </div>
+        <div id="cl{{i}}" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Sr No.</th>
+                    <th>Job Title</th>
+                    <th>Qualification Required</th>
+                    <th>Skills Required</th>
+                    <th>Required Experience</th>
 
-              <tr>
-                <td>3</td>
-                <td>Quality Assurance</td>
-                <td>BE/ME</td>
-                <td>Not Required</td>
-                <td><button type="button" class="btn btn-primary">Apply</button></td>
-              </tr>
-            </tbody>
-          </table>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let j of job.jobs;let k=index">
+                    <td>{{k+1}}</td>
+                    <td>{{j.jobTitle}}</td>
+                    <td>{{j.qualification}}</td>
+                    <td>{{j.skills}}</td>
+                    <td>{{j.experience}}</td>
+                    <td>
+                      <a [routerLink]="['/apply',j.jobTitle]"><button type="button" class="btn btn-primary">Apply</button></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        
-
-
+        </div>
       </div>
     </div>
   </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-        <h4>Design&nbsp;<span class="fa fa-caret-down"></span></h4></a>
-      </h4>
-    </div>
-    <div id="collapse2" class="panel-collapse collapse">
-      <div class="panel-body">
-        <div class="table-responsive">          
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Sr No.</th>
-                <th>Job Title</th>
-                <th>Qualification Required</th>
-                <th>Required Experience</th>
-               
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Data Analyst</td>
-                <td>BE/ME</td>
-                <td>Not Required</td>
-                <td><button type="button" class="btn btn-primary">Apply</button></td>
-              </tr>
-
-              <tr>
-                <td>2</td>
-                <td>Dev Ops Engineer</td>
-                <td>BE/ME</td>
-                <td>2+</td>
-                <td><button type="button" class="btn btn-primary">Apply</button></td>
-              </tr>
-
-              <tr>
-                <td>3</td>
-                <td>Quality Assurance</td>
-                <td>BE/ME</td>
-                <td>Not Required</td>
-                <td><a [routerLink]="['/apply','Quality_Assurance']"><button class="btn btn-primary">Apply</button></a></td>
-                
-              </tr>
-            </tbody>
-          </table>
-          </div>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-        <h4>Business Development &nbsp;<span class="fa fa-caret-down"></span></h4></a>
-      </h4>
-    </div>
-    <div id="collapse3" class="panel-collapse collapse">
-      <div class="panel-body">
-        <div class="table-responsive">          
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Sr No.</th>
-                <th>Job Title</th>
-                <th>Qualification Required</th>
-                <th>Required Experience</th>
-               
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Data Analyst</td>
-                <td>BE/ME</td>
-                <td>Not Required</td>
-                <td><button type="button" class="btn btn-primary">Apply</button></td>
-              </tr>
-
-              <tr>
-                <td>2</td>
-                <td>Dev Ops Engineer</td>
-                <td>BE/ME</td>
-                <td>2+</td>
-                <td><button type="button" class="btn btn-primary">Apply</button></td>
-              </tr>
-
-              <tr>
-                <td>3</td>
-                <td>Quality Assurance</td>
-                <td>BE/ME</td>
-                <td>Not Required</td>
-                <td><button type="button" class="btn btn-primary">Apply</button></td>
-              </tr>
-            </tbody>
-          </table>
-          </div>
-        
-
-
-      </div>
-    </div>
-  </div>
-</div> 
 </div>

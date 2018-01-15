@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Routes } from '@angular/router'
 import { ActivatedRoute } from '@angular/router';
+import { CategoryService } from "./category-service.service"
+import { CategoryModel } from './category.model';
+import {Http} from '@angular/http';
 
 @Component({
   selector: 'app-job-operning',
@@ -9,9 +12,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class JobOperningComponent implements OnInit {
   
-  constructor( ) { }
+  jobList:CategoryModel[];
+  
+  constructor(private categoryService:CategoryService) { }
 
   ngOnInit() {
+    this.categoryService.getCategories().subscribe((res: CategoryModel[]) => {
+      this.jobList = res;
+    });
   }
 
 }

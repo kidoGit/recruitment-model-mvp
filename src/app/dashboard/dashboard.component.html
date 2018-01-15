@@ -1,0 +1,253 @@
+
+<div class="container content">
+  <h2 class="text-center">Job Openings</h2>
+  <hr>
+  <button class="btn btn-primary" data-toggle="modal" data-target="#addCategory">Add New Category</button>
+
+  <div id="addCategory" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" #userData="ngForm" novalidate>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="category">Category:</label>
+              <div class="col-sm-10">
+                <input #cat name="category" type="text" class="form-control" id="category" placeholder="Enter category" ngModel required>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="job_title">Job title:</label>
+              <div class="col-sm-10">
+                <input #job name="job_title" type="text" class="form-control" id="job_title" placeholder="Enter Job Title" ngModel required>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="qualification">Qualification Required:</label>
+              <div class="col-sm-10">
+                <input #qualification name="qualification" type="text" class="form-control" id="qualification" placeholder="Enter Qualification " ngModel required>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="skills_required">Skills Required:</label>
+              <div class="col-sm-10">
+                <input data-role="tagsinput" #skills name="skills_required" type="text" class="form-control" id="skills_required" placeholder="Enter Skills" ngModel required>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="experience">Required Experience:</label>
+              <div class="col-sm-10">
+                <input #experience name="experience" type="text" class="form-control" id="experience" placeholder="Enter Experience" ngModel required>
+              </div>
+
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button (click)="addCategory(cat.value,job.value,qualification.value,skills.value,experience.value)" type="button" class="btn btn-primary"
+            data-dismiss="modal" [disabled]="!userData.valid">Add</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <br>
+  <br>
+  <div class="panel-group" id="accordion" *ngFor="let category of categoryList;let i=index">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <div class="row ">
+            <div class="col-lg-10">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{i}}" style="text-decoration:none;">
+
+                <h4>{{category.name}} &nbsp;
+                  <span class="fa fa-caret-down"></span>
+                </h4>
+              </a>
+            </div>
+            <div class="col-lg-2">
+              <button type="button" class="btn btn-success btn-sm" data-toggle="modal" [attr.data-target]="'#myModalAdd' +i">
+                <i class="fa fa-plus"></i>
+              </button>
+              <div id="{{ 'myModalAdd' +i }}" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                      <form class="form-horizontal" novalidate>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="jobTitle">Job Title:</label>
+                          <div class="col-sm-10">
+                            <input #jobTitle type="text" class="form-control" id="jobTitle" name="jobTitle" placeholder="Enter job title" ngModel required>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="qualification">Qualification Required:</label>
+                          <div class="col-sm-10">
+                            <input #jobQualification type="text" class="form-control" id="qualification" name="qualification" placeholder="Qualification Required" ngModel required>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="skills">Skills Required:</label>
+                          <div class="col-sm-10">
+                            <input data-role="tagsinput" #jobSkills type="text" class="form-control" id="skills" name="skills" placeholder="Skills Required" ngModel required>
+                            
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="experience">Required Experience:</label>
+                          <div class="col-sm-10">
+                            <input #jobExperience type="text" class="form-control" id="experience" name="experience" placeholder="Required Experience" ngModel required>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button (click)="addNewJob(category,jobTitle.value,jobQualification.value,jobSkills.value,jobExperience.value)" type="button"
+                        class="btn btn-primary" data-dismiss="modal">Save</button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <button type="button" (click)="postCategoryName(category)" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-edit-category">
+                <i class="fa fa-pencil-square-o"></i>
+              </button>
+              <!-- Opens <app-modal-edit-category> -->
+            </div>
+          </div>
+        </h4>
+      </div>
+      <div id="collapse{{i}}" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Sr No.</th>
+                  <th>Job Title</th>
+                  <th>Qualification Required</th>
+                  <th>Skills Required</th>
+                  <th>Required Experience</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of category.jobs;let k=index">
+                  <td>{{k+1}}</td>
+                  <td>{{c.jobTitle}}</td>
+                  <td>{{c.qualification}}</td>
+                  <td>{{c.skills}} </td>
+                  <td>{{c.experience}}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" [attr.data-target]="'#myModalEdit' +i+ k">
+                      <i class="fa fa-pencil-square-o"></i>
+                    </button>
+                    <div id="{{ 'myModalEdit' +i+ k }}" class="modal fade" role="dialog">
+                      <div class="modal-dialog modal-lg">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Edit</h4>
+                          </div>
+                          <div class="modal-body">
+
+
+
+                            <form class="form-horizontal">
+                              <div class="form-group">
+                                <label class="control-label col-sm-2" for="jobTitle">Job Title:</label>
+                                <div class="col-sm-10">
+                                  <input #newJobTitle value="{{c.jobTitle}}" type="text" class="form-control" id="jobTitle" placeholder="Enter job title">
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <label class="control-label col-sm-2" for="qualification">Qualification Required:</label>
+                                <div class="col-sm-10">
+                                  <input #newJobQualification value="{{c.qualification}}" type="text" class="form-control" id="qualification" placeholder="Qualification Required">
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <label class="control-label col-sm-2" for="skills">Skills Required:</label>
+                                <div class="col-sm-10">
+                                  <input #newJobSkills value="{{c.skills}}" type="text" class="form-control" id="skills" placeholder="Skills Required">
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <label class="control-label col-sm-2" for="experience">Required Experience:</label>
+                                <div class="col-sm-10">
+                                  <input #newJobExperience value="{{c.experience}}" type="text" class="form-control" id="experience" placeholder="Required Experience">
+                                </div>
+                              </div>
+                            </form>
+
+
+                          </div>
+                          <div class="modal-footer">
+                            <button (click)="editJob(i,k,newJobTitle.value,newJobQualification.value,newJobSkills.value,newJobExperience.value)" type="button"
+                              class="btn btn-primary" data-dismiss="modal">Apply</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" [attr.data-target]="'#myModal' +i+ k">
+                      <i class="fa fa-trash-o"></i>
+                    </button>
+
+                    <div id="{{ 'myModal' +i+ k }}" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+
+                          <div class="modal-body">
+                            <h4> Are you sure you want to delete?</h4>
+                          </div>
+                          <div class="modal-footer">
+                            <button (click)="deleteJobById(i,k)" type="button" class="btn btn-default" data-dismiss="modal">YES</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal-edit-category></app-modal-edit-category>

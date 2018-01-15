@@ -4,13 +4,14 @@
 
     </div>
     <div class="col-lg-8">
-      <form>
+      <form #userData="ngForm" (ngSubmit)="onSubmit(userData.value)">
         <h2>Personal Details</h2>
         <hr>
         <div class="form-group">
 
           <label for="name">Name</label>
-          <input type="text" class="form-control" id="name">
+          <input #name="ngModel" type="text" class="form-control" id="name" name="name" ngModel required>
+          <span *ngIf="!name.valid && name.touched" class="help-block">Please enter Name!</span>
         </div>
         <div class="form-group">
 
@@ -19,50 +20,129 @@
         </div>
         <div class="form-group">
           <label for="email">Email address:</label>
-          <input type="email" class="form-control" id="email">
+          <input #email="ngModel" type="email" class="form-control" id="email" name="email" ngModel required email>
+          <span *ngIf="!email.valid && email.touched" class="help-block">Please enter valid email!</span>
         </div>
         <div class="form-group">
           <label for="phone">Phone</label>
-          <input type="number" class="form-control" id="phone">
+          <input #phone="ngModel" pattern="[0-9]{10}" type="number" class="form-control" id="phone" name="phone" ngModel required>
+          <span *ngIf="!phone.valid && phone.touched" class="help-block">Please enter valid phone number!</span>
         </div>
         <div class="form-group">
           <label for="dob">Date of Birth</label>
-          <input type="date" class="form-control" id="dob">
+          <input #dob="ngModel" type="date" class="form-control" id="dob" name="dob" ngModel required>
+          <span *ngIf="!dob.valid && dob.touched" class="help-block">Please enter Date of Birth!</span>
         </div>
         <div class="form-group">
           <label for="radio">Gender:</label>
-          <input type="radio" id="radio" name="radio" class="radio-inline" style="margin-top:-5px" /> &nbsp;&nbsp;Male
-          <input type="radio" id="radio" name="radio" class="radio-inline" />&nbsp;&nbsp;Female
+          <input #gender="ngModel" type="radio" value="male" id="radio" name="radio" class="radio-inline" style="margin-top:-5px" ngModel
+            required /> &nbsp;&nbsp;Male
+          <input #gender="ngModel" type="radio" value="female" id="radio" name="radio" class="radio-inline" ngModel required/>&nbsp;&nbsp;Female
+          <span *ngIf="!gender.valid && hometown.touched" class="help-block">Please select Gender!</span>
+        </div>
+        <div class="form-group">
+          <label for="hometown">Hometown</label>
+          <input #hometown="ngModel" type="text" class="form-control" id="hometown" name="hometown" ngModel required>
+          <span *ngIf="!hometown.valid && hometown.touched" class="help-block">Please enter HomeTown!</span>
         </div>
         <div class="form-group">
           <label for="city">Current City</label>
-          <input type="text" class="form-control" id="city">
+          <input #city="ngModel" type="text" class="form-control" id="city" name="city" ngModel required>
+          <span *ngIf="!city.valid && city.touched" class="help-block">Please enter City!</span>
         </div>
+        <div class="form-group">
+          <label for="social_presence">Social Presence</label>
+          <input type="text" class="form-control" id="social_presence" name="social_presence" placeholder="E.g. LinkedIn">
+        </div>
+
         <br>
         <br>
 
         <h2>Professional Details</h2>
         <hr>
         <div class="form-group">
-          <label for="file">Resume</label>
-          <input type="file" class="form-control-file" id="file">
-        </div>
-        <div class="form-group">
-          <label for="city">Current Employement Status</label>
-          <select class="selectpicker">
-            <option>Select</option>
-            <option>Fresher</option>
-            <option>Freelancer</option>
-            <option>Working</option>
-
+          <label for="status">Current Employement Status</label>
+          <select class="selectpicker" name="status" required (change)="changeStatus()" [(ngModel)]='selectedStatus'>
+            <option *ngFor="let stat of status" value={{stat}}>{{stat}}</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="exp">Experience(If any)</label>
-          <input type="number" class="form-control" id="exp">
+
+        <div *ngIf="!isFresher">
+          <div class="form-group">
+            <label for="current_ctc">Current CTC</label>
+            <input #currentCtc="ngModel" type="number" class="form-control" id="current_ctc" name="current_ctc" ngModel>
+            <span *ngIf="!currentCtc.valid && currentCtc.touched" class="help-block">Please enter Current Ctc!</span>
+          </div>
+          <div class="form-group">
+            <label for="expected_ctc">Expected CTC</label>
+            <input #expectedCtc="ngModel" type="number" class="form-control" id="expected_ctc" name="expected_ctc" ngModel>
+            <span *ngIf="!expectedCtc.valid && expectedCtc.touched" class="help-block">Please enter Expected Ctc!</span>
+          </div>
+          <div class="form-group">
+            <label for="role">Current Role</label>
+            <input #role="ngModel" type="text" class="form-control" id="role" name="role" ngModel>
+            <span *ngIf="!role.valid && role.touched" class="help-block">Please enter Current Role!</span>
+          </div>
+          <div class="form-group">
+            <label for="notice">Notice Period</label>
+            <input #notice="ngModel" type="number" class="form-control" id="notice" name="notice" placeholder="In days" ngModel>
+            <span *ngIf="!notice.valid && notice.touched" class="help-block">Please enter Notice period!</span>
+          </div>
+          <div class="form-group">
+            <label for="exp">Experience(If any)</label>
+            <input #exp="ngModel" type="number" class="form-control" id="exp" name="exp" ngModel>
+            <span *ngIf="!exp.valid && exp.touched" class="help-block">Please enter experience!</span>
+          </div>
+          <div class="form-group">
+            <label for="relExp">Relevant Experience</label>
+            <input #relExp="ngModel" type="number" class="form-control" id="relExp" name="relExp" ngModel>
+            <span *ngIf="!relExp.valid && relExp.touched" class="help-block">Please enter Relevant Experience!</span>
+          </div>
+          <div class="form-group">
+            <label for="reason">Reason For Leaving</label>
+            <input #reason="ngModel" type="text" class="form-control" id="reason" ngModel>
+            <span *ngIf="!reason.valid && reason.touched" class="help-block">Please enter Reason for Living!</span>
+          </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+          <label for="file">Resume</label>
+          <input type="file" class="form-control-file" id="file">
+          <p>Resume, SSC, HSC, Degree, Pay slip (if exp. - 3 months)</p>
+        </div>
+        <h2>References</h2>
+
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Contact No.</th>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" name="ref_name">
+            </td>
+            <td>
+              <input type="text" name="ref_designation">
+            </td>
+            <td>
+              <input type="text" name="ref_contact">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" name="ref_name">
+            </td>
+            <td>
+              <input type="text" name="ref_designation">
+            </td>
+            <td>
+              <input type="text" name="ref_contact">
+            </td>
+          </tr>
+        </table>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!userData.valid">Submit</button>
       </form>
     </div>
 
@@ -70,4 +150,3 @@
 
     </div>
   </div>
-  

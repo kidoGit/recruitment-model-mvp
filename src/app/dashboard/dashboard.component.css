@@ -1,5 +1,7 @@
 .content{
     padding-bottom: 80px;
+    
+    /* background-image: url('../../assets/bg(3).jpg'); */
 }
 input.ng-invalid.ng-touched,select.ng-invalid.ng-touched
 {
